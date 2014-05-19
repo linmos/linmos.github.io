@@ -1,6 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://linmos.net/blog/2011/04/30/improving-uislider-in-uiscrollview/</loc>
+        <lastmod>2014-05-19T00:31:34+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://linmos.net/blog/2011/06/08/sqlite-foreign-key-support/</loc>
+        <lastmod>2014-05-19T00:31:34+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://linmos.net/blog/2012/04/29/first-article/</loc>
+        <lastmod>2014-05-19T00:31:34+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://linmos.net/blog/archives/</loc>
         <lastmod>2014-05-19T00:31:34+08:00</lastmod>
     </url>

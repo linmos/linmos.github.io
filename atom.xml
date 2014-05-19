@@ -4,7 +4,7 @@
   <title><![CDATA[LINMOS.LOG]]></title>
   <link href="http://linmos.net/atom.xml" rel="self"/>
   <link href="http://linmos.net/"/>
-  <updated>2014-05-19T12:05:06+08:00</updated>
+  <updated>2014-05-19T13:21:45+08:00</updated>
   <id>http://linmos.net/</id>
   <author>
     <name><![CDATA[Amos Lin]]></name>
@@ -12,5 +12,87 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress 首篇文章]]></title>
+    <link href="http://linmos.net/blog/2012/04/29/first-article/"/>
+    <updated>2012-04-29T16:16:00+08:00</updated>
+    <id>http://linmos.net/blog/2012/04/29/first-article</id>
+    <content type="html"><![CDATA[<p>最近發現許多高手前輩的 Blog 都變成一款簡潔風格的佈景，仔細一看才發現原來大家都從 Wordpress 跳槽到 Octopress 了，於是做了點功課，發現 Octopress 才是真正適合 Programmer 啊！之前用 WP 一直都覺得很麻煩，要調整和安裝一堆東西才能達到想要的效果，然後寫文章的介面也很亂。所以一知道這玩意當然也要開始改用 Octopress 啦。</p>
+
+<p>剛好<a href="http://blog.linym.net">之前</a>架的站因為讀了忙碌的研究所，從09年後就沒更新了，直到最近又開始想寫些東西，所以舊的站就直接讓他荒廢吧…</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[讓 iOS 的 SQLite 支援 Foreign Key]]></title>
+    <link href="http://linmos.net/blog/2011/06/08/sqlite-foreign-key-support/"/>
+    <updated>2011-06-08T19:19:00+08:00</updated>
+    <id>http://linmos.net/blog/2011/06/08/sqlite-foreign-key-support</id>
+    <content type="html"><![CDATA[<p>SQLite 從 3.6.19 版之後已經支援外部索引鍵(Foreign Key，FK)的功能，也就是說 iOS 4.x 以上的版本都可以使用，但是實際應用時會發現是行不通的，這是由於 iOS 編譯內建的 SQLite 預設是把 Foreign Key 功能關閉，所以「每次」資料庫連接後都需送出開啟 Foreign Key Support 的 Query，如下：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>PRAGMA foreign_keys = ON</span></code></pre></td></tr></table></div></figure>
+
+
+<p>之後再執行所需要的 SQL 語句即可。有了 FK 的支援，對於多資料表的 Update、Delete 就會方便許多。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[改善 UISlider 在 UIScrollView 裡的觸控成功率]]></title>
+    <link href="http://linmos.net/blog/2011/04/30/improving-uislider-in-uiscrollview/"/>
+    <updated>2011-04-30T19:19:00+08:00</updated>
+    <id>http://linmos.net/blog/2011/04/30/improving-uislider-in-uiscrollview</id>
+    <content type="html"><![CDATA[<p>在使用 ScrollView 來設計畫面時，如果加入諸如 Slider bar 之類的元件成為 subview，兩者的觸控事件就會有所影響，預設的情況下，如果使用者直接對 slider 作拖曳的動作，大多會觸發 scrollView 的滾動事件造成 slider 無法正常使用，除非先在 slider 按住停留一下才可以正常拖曳，這其實是跟 UIScrollView 的設計有關係。</p>
+
+<p>在預設的情況下，scrollView 接收到觸控事件之後，會先 delay 以確定使用者有沒有繼續做滾動視圖的動作，如果有就會立即移動 scrollView，沒有的話才把觸控事件傳遞給上層的 UIControl 元件，這也就是造成前述問題的原因所在，接下來提供一個解決方法。</p>
+
+<p>首先要繼承 UIScrollView 並且覆寫 <a href="http://developer.apple.com/library/ios/#documentation/UIKit/Reference/UIScrollView_Class/Reference/UIScrollView.html#//apple_ref/occ/instm/UIScrollView/touchesShouldCancelInContentView:">touchesShouldCancelInContentView</a> 方法，如下：</p>
+
+<figure class='code'><figcaption><span>sample.m </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="cp">#import &lt;UIKit/UIKit.h&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@interface</span> <span class="nc">MyScrollView</span> : <span class="nc">UIScrollView</span> <span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">@end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@implementation</span> <span class="nc">MyScrollView</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">touchesShouldCancelInContentView:</span><span class="p">(</span><span class="n">UIView</span> <span class="o">*</span><span class="p">)</span><span class="nv">view</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">([</span><span class="n">view</span> <span class="nl">isKindOfClass:</span><span class="p">[</span><span class="n">UISlider</span> <span class="n">class</span><span class="p">]])</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">NO</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">YES</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>重點是在第11行判斷 touch view 是否為 UISlider，並且回傳 NO。
+接著設定 scrollView.<strong>delaysContentTouches</strong> = NO，停止觸控事件的延遲處理。</p>
+
+<p>經過這樣處理如果還是不太容易操作 slider，這時可以把 slider 加入到一個區域面積比較大 UIView 裡，再放進 scrollView，然後前面的 touchesShouldCancelInContentView 也把這個 UIView 加入判斷，這樣就可以正常操作 slider 了，此方法也可以套用到其他元件上。</p>
+]]></content>
+  </entry>
   
 </feed>

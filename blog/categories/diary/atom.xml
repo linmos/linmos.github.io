@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Diary | LINMOS.LOG]]></title>
+  <link href="http://linmos.net/blog/categories/diary/atom.xml" rel="self"/>
+  <link href="http://linmos.net/"/>
+  <updated>2014-05-19T13:21:45+08:00</updated>
+  <id>http://linmos.net/</id>
+  <author>
+    <name><![CDATA[Amos Lin]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress 首篇文章]]></title>
+    <link href="http://linmos.net/blog/2012/04/29/first-article/"/>
+    <updated>2012-04-29T16:16:00+08:00</updated>
+    <id>http://linmos.net/blog/2012/04/29/first-article</id>
+    <content type="html"><![CDATA[<p>最近發現許多高手前輩的 Blog 都變成一款簡潔風格的佈景，仔細一看才發現原來大家都從 Wordpress 跳槽到 Octopress 了，於是做了點功課，發現 Octopress 才是真正適合 Programmer 啊！之前用 WP 一直都覺得很麻煩，要調整和安裝一堆東西才能達到想要的效果，然後寫文章的介面也很亂。所以一知道這玩意當然也要開始改用 Octopress 啦。</p>
+
+<p>剛好<a href="http://blog.linym.net">之前</a>架的站因為讀了忙碌的研究所，從09年後就沒更新了，直到最近又開始想寫些東西，所以舊的站就直接讓他荒廢吧…</p>
+]]></content>
+  </entry>
+  
+</feed>
