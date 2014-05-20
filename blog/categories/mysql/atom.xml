@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Database | LINMOS.LOG]]></title>
-  <link href="http://linmos.net/blog/categories/database/atom.xml" rel="self"/>
+  <title><![CDATA[Category: MySQL | LINMOS.LOG]]></title>
+  <link href="http://linmos.net/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://linmos.net/"/>
   <updated>2014-05-20T18:02:51+08:00</updated>
   <id>http://linmos.net/</id>
@@ -33,18 +33,6 @@
 <p>如果要指定 client 連線的編碼，則在 [client] 區段加入
 <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>default-character-set = utf8</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[讓 iOS 的 SQLite 支援 Foreign Key]]></title>
-    <link href="http://linmos.net/blog/2011/06/08/sqlite-foreign-key-support/"/>
-    <updated>2011-06-08T19:19:00+08:00</updated>
-    <id>http://linmos.net/blog/2011/06/08/sqlite-foreign-key-support</id>
-    <content type="html"><![CDATA[<p>SQLite 從 3.6.19 版之後已經支援外部索引鍵(Foreign Key，FK)的功能，也就是說 iOS 4.x 以上的版本都可以使用，但是實際應用時會發現是行不通的，這是由於 iOS 編譯內建的 SQLite 預設是把 Foreign Key 功能關閉，所以「每次」資料庫連接後都需送出開啟 Foreign Key Support 的 Query，如下：
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>PRAGMA foreign_keys = ON</span></code></pre></td></tr></table></div></figure></notextile></div>
-之後再執行所需要的 SQL 語句即可。有了 FK 的支援，對於多資料表的 Update、Delete 就會方便許多。</p>
 ]]></content>
   </entry>
   
